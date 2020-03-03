@@ -1,6 +1,15 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { Badge, Button, Col, Feedback, FormControl, FormGroup, FormLabel, InputGroup } from 'react-bootstrap';
+import {
+  Badge,
+  Button,
+  Col,
+  Feedback,
+  FormControl,
+  FormGroup,
+  FormLabel,
+  InputGroup
+} from "react-bootstrap";
 import "./SignIn.css";
 
 const SignIn = () => {
@@ -29,17 +38,29 @@ const SignIn = () => {
         <section className="container">
           <Form className="form-signin">
             <h2>Sign In</h2>
-            <label className="label" htmlFor="email">
-              Email
-            </label>
-            <Field className="input" type="email" name="email" />
-            <ErrorMessage name="email" component="div" />
-            <label className="label" htmlFor="password">
-              Password
-            </label>
-            <Field className="input" type="password" name="password" />
-            <ErrorMessage name="password" component="div" />
-            <Button className="button" type="submit" disabled={isSubmitting}>
+            <FormGroup controlId="formEmail">
+              <FormLabel>Email</FormLabel>
+              <Field type="email" name="email">
+                {({ field, form, meta }) => (
+                  <FormControl
+                    type="email"
+                    {...field}
+                    placeholder="Email address"
+                  />
+                )}
+              </Field>
+              <ErrorMessage name="email" component="div" />
+            </FormGroup>
+            <FormGroup controlId="formEmail">
+              <FormLabel>Password</FormLabel>
+              <Field type="password" name="password">
+                {({ field, form, meta }) => (
+                  <FormControl type="text" {...field} placeholder="Password" />
+                )}
+              </Field>
+              <ErrorMessage name="password" component="div" />
+            </FormGroup>
+            <Button variant="primary" type="submit" disabled={isSubmitting}>
               Submit
             </Button>
           </Form>
