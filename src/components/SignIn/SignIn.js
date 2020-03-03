@@ -1,60 +1,52 @@
-import React, { Fragment } from "react";
+import React from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Badge, Button, Col, Feedback, FormControl, FormGroup, FormLabel, InputGroup } from 'react-bootstrap';
 import "./SignIn.css";
 
 const SignIn = () => {
-  return(
-    <div className="signin--container">
-      <form className="signin--form--container">
-        <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
-          <legend className="f4 fw6 ph0 mh0">Sign In</legend>
-          <div className="mt3">
-            <label className="db fw6 lh-copy f6" htmlFor="email-address">
+  return (
+    <Formik
+      initialValues={{ email: "", password: "" }}
+      validate={values => {
+        const errors = {};
+        if (!values.email) {
+          errors.email = "Required";
+        } else if (
+          !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+        ) {
+          errors.email = "Invalid email address";
+        }
+        return errors;
+      }}
+      onSubmit={(values, { setSubmitting }) => {
+        setTimeout(() => {
+          alert(JSON.stringify(values, null, 2));
+          setSubmitting(false);
+        }, 400);
+      }}
+    >
+      {({ isSubmitting }) => (
+        <section className="container">
+          <Form className="form-signin">
+            <h2>Sign In</h2>
+            <label className="label" htmlFor="email">
               Email
             </label>
-            <input
-              className="signin--form--input pa2 input-reset ba bg-transparent"
-              type="email"
-              name="email-address"
-              id="email-address"
-              onChange={""}
-            />
-          </div>
-          <div className="mv3">
-            <label className="db fw6 lh-copy f6" htmlFor="password">
+            <Field className="input" type="email" name="email" />
+            <ErrorMessage name="email" component="div" />
+            <label className="label" htmlFor="password">
               Password
             </label>
-            <input
-              className="signin--form--input b pa2 input-reset ba bg-transparent"
-              type="password"
-              name="password"
-              id="password"
-              onChange={""}
-            />
-          </div>
-          {/* <label className="pa0 ma0 lh-copy f6 pointer">
-            <input className="pointer" type="checkbox" /> Remember me
-          </label> */}
-        </fieldset>
-        <div className="">
-          <input
-            className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
-            type="submit"
-            value="Sign in"
-            onClick={""}
-          />
-        </div>
-        <div className="lh-copy mt3">
-          <p
-            className="f6 link dim black db pointer"
-            onClick={() => ""}
-          >
-            Sign up
-          </p>
-          {/* <p className="f6 link dim black db pointer">Forgot your password?</p> */}
-        </div>
-      </form>
-      </div>
+            <Field className="input" type="password" name="password" />
+            <ErrorMessage name="password" component="div" />
+            <Button className="button" type="submit" disabled={isSubmitting}>
+              Submit
+            </Button>
+          </Form>
+        </section>
+      )}
+    </Formik>
   );
-}
+};
 
 export default SignIn;
