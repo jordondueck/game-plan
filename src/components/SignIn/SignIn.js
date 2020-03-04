@@ -10,23 +10,25 @@ import {
   FormLabel,
   InputGroup
 } from "react-bootstrap";
+import SignInSchema from "../ValidateForm/ValidateForm";
 import "./SignIn.css";
 
 const SignIn = () => {
   return (
     <Formik
       initialValues={{ email: "", password: "" }}
-      validate={values => {
-        const errors = {};
-        if (!values.email) {
-          errors.email = "Required";
-        } else if (
-          !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-        ) {
-          errors.email = "Invalid email address";
-        }
-        return errors;
-      }}
+      validationSchema={SignInSchema}
+      // validate={values => {
+      //   const errors = {};
+      //   if (!values.email) {
+      //     errors.email = "Required";
+      //   } else if (
+      //     !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+      //   ) {
+      //     errors.email = "Invalid email address";
+      //   }
+      //   return errors;
+      // }}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
           alert(JSON.stringify(values, null, 2));
@@ -55,7 +57,7 @@ const SignIn = () => {
               <FormLabel>Password</FormLabel>
               <Field type="password" name="password">
                 {({ field, form, meta }) => (
-                  <FormControl type="text" {...field} placeholder="Password" />
+                  <FormControl type="password" {...field} placeholder="Password" />
                 )}
               </Field>
               <ErrorMessage name="password" component="div" />

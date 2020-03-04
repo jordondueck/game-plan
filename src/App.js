@@ -1,10 +1,10 @@
-import React, { Fragment } from "react";
-import "./App.css";
+import React from "react";
 import SignIn from "./components/SignIn/SignIn";
+import "./App.css";
 
 const App = () => {
   return (
-    <Fragment>
+    <div className="App">
       <header>
         <h1 className="title">Developer Dashboard</h1>
         <nav></nav>
@@ -13,7 +13,7 @@ const App = () => {
         <SignIn />
       </section>
       <footer></footer>
-    </Fragment>
+    </div>
   );
 };
 
