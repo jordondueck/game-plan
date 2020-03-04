@@ -18,17 +18,6 @@ const SignIn = () => {
     <Formik
       initialValues={{ email: "", password: "" }}
       validationSchema={SignInSchema}
-      // validate={values => {
-      //   const errors = {};
-      //   if (!values.email) {
-      //     errors.email = "Required";
-      //   } else if (
-      //     !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-      //   ) {
-      //     errors.email = "Invalid email address";
-      //   }
-      //   return errors;
-      // }}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
           alert(JSON.stringify(values, null, 2));
@@ -41,7 +30,7 @@ const SignIn = () => {
           <Form className="form-signin">
             <h2>Sign In</h2>
             <FormGroup controlId="formEmail">
-              <FormLabel>Email</FormLabel>
+              {/* <FormLabel>Email</FormLabel> */}
               <Field type="email" name="email">
                 {({ field, form, meta }) => (
                   <FormControl
@@ -53,8 +42,8 @@ const SignIn = () => {
               </Field>
               <ErrorMessage name="email" component="div" />
             </FormGroup>
-            <FormGroup controlId="formEmail">
-              <FormLabel>Password</FormLabel>
+            <FormGroup controlId="formPassword">
+              {/* <FormLabel>Password</FormLabel> */}
               <Field type="password" name="password">
                 {({ field, form, meta }) => (
                   <FormControl type="password" {...field} placeholder="Password" />
