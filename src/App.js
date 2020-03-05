@@ -4,12 +4,12 @@ import "./App.css";
 
 const App = () => {
   return (
-    <div className="App">
-      <header>
+    <div className="app">
+      {/* <header>
         <h1 className="title">Developer Dashboard</h1>
         <nav></nav>
-      </header>
-      <section>
+      </header> */}
+      <section className="container">
         <SignIn />
       </section>
       <footer></footer>

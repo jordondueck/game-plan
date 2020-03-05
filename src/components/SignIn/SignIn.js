@@ -26,7 +26,6 @@ const SignIn = () => {
       }}
     >
       {({ isSubmitting }) => (
-        <section className="container">
           <Form className="form-signin">
             <h2>Sign In</h2>
             <FormGroup controlId="formEmail">
@@ -55,7 +54,6 @@ const SignIn = () => {
               Submit
             </Button>
           </Form>
-        </section>
       )}
     </Formik>
   );
